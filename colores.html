@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="color-function.js"></script>
+</head>
+<body>
+    <h1>Crear una paleta de colores</h1>
+    <form action="paletas.html" method="post" name="paleta">
+        <p>
+            <label for="color">Color de texto: </label>
+            <input type="color" name="color" id="color" value="#000000">
+        </p>
+        <p>
+            <label for="bgcolor">Color de fondo: </label>
+            <input type="color" name="bgcolor" id="bgcolor" value="#FFFFFF">
+        </p>
+        <p>
+            <input type="submit" value="Crear">
+        </p>
+        <h1 id="mensaje"></h1>
+    </form>
+    <script>
+        function luminanceHex(hex) {
+            let rgb = hexToRgb(hex);
+            return luminance(rgb.r, rgb.g, rgb.b);
+        }
+        const form = document.forms.paleta;
+        const mensaje = document.getElementById('mensaje');
+        form.addEventListener('submit', e =>{
+            e.preventDefault();
+            console.log('enviando');
+            let lum1 = luminanceHex(form.color.value);
+            let lum2 = luminanceHex(form.bgcolor.value);
+            let contraste = contrastRatio(lum1, lum2);
+            if (contraste>4) {
+                let paletas = localStorage.paletas ? JSON.parse(localStorage.paletas) : [];
+                let nuevaPaleta = [form.color.value, form.bgcolor.value];
+                paletas.push(nuevaPaleta);
+                localStorage.paletas = JSON.stringify(paletas);
+                form.submit();
+            } else {
+                mensaje.innerHTML = "El contraste es muy bajo. Solo un " + contraste;
+            }
+        });
+    </script>
+</body>
+</html>

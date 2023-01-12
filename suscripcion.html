@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suscripción</title>
+    <script src="temas.js"></script>
+    <script src="suscripcion.js" defer></script>
+</head>
+<body>
+    <h1>Formulario de Suscripción</h1>
+    <form action="pagar.html" method="post" name="suscripcion">
+        <fieldset>
+            <legend>Datos personales</legend>
+            <label for="nombre">Nombre: </label>
+            <input type="text" name="nombre" id="nombre">
+        </fieldset>
+        <fieldset>
+            <legend>Tipo de Suscripción</legend>
+            <input type="radio" name="tipo" id="basico" value="basico" checked>
+            <label for="basico">Básico</label>
+            <input type="radio" name="tipo" id="estandar" value="estandar">
+            <label for="estandar">Estándar</label>
+            <input type="radio" name="tipo" id="premium" value="premium">
+            <label for="premium">Premium</label>
+            <input type="radio" name="tipo" id="elite" value="elite">
+            <label for="elite">Élite</label>            
+        </fieldset>
+        <fieldset>
+            <legend>Temas</legend>          
+        </fieldset>
+        <fieldset>
+            <legend>Método de pago</legend>
+            <p>Precio suscripción: <span id="precio">4</span>€</p>
+            <p>
+                <label for="domiciliar">Domiciliar el pago</label>
+                <input type="checkbox" name="domiciliar" id="domiciliar">    
+            </p>        
+        </fieldset>
+        <p>
+            <input type="reset" value="Borrar">
+            <input type="submit" value="Suscribir">
+        </p>
+    </form>
+</body>
+</html>
